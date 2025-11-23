@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #070710 0%, #01020b 100%);
+  color: #dfe7ff;
+  font-family: 'Lora', serif;
+  animation: hueShift 30s ease-in-out infinite alternate;
+}
+
+@keyframes hueShift {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(25deg); }
+}
+
+/* 🌙 NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 20, 0.4);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  border-bottom: 1px solid rgba(150, 160, 220, 0.15);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(10, 10, 25, 0.7);
+  box-shadow: 0 4px 25px rgba(120, 140, 255, 0.25);
+}
+
+.logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #cbb4ff;
+  letter-spacing: 1px;
+}
+
+nav a {
+  margin-left: 2rem;
+  color: #e0d9ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: #b6aaff;
+  text-shadow: 0 0 15px rgba(180, 190, 255, 0.9);
+}
+
+/* 🌌 SCENE */
+.skills-scene {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#skillsCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* STARFIELD */
+.skills-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  opacity: 0.15;
+  animation: starDrift 100s linear infinite;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+@keyframes starDrift {
+  0% { background-position: 0 0; }
+  50% { background-position: 800px 400px; }
+  100% { background-position: 0 0; }
+}
+
+/* OVERLAY TEXT */
+.skills-overlay {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 850px;
+  color: #ccd8ff;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(130,150,255,0.5);
+  z-index: 10;
+}
+
+.skills-overlay h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.3rem;
+  color: #e3e8ff;
+  text-shadow: 0 0 30px rgba(160,180,255,0.8);
+  margin-bottom: 0.8rem;
+}
+
+/* 🌌 PROJECT CARD */
+.project-card {
+  position: fixed;
+  width: clamp(320px, 30vw, 440px);
+  background: rgba(15, 18, 30, 0.92);
+  border: 1px solid rgba(180, 200, 255, 0.35);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 0 50px rgba(150, 180, 255, 0.45);
+  color: #e5eaff;
+  backdrop-filter: blur(14px);
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  transition: all 0.4s ease;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  animation: cardPulse 5s ease-in-out infinite;
+}
+
+@keyframes cardPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(150,180,255,0.4); }
+  50% { box-shadow: 0 0 70px rgba(180,210,255,0.7); }
+}
+
+.project-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(150,180,255,0.3);
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.03) rotateX(4deg);
+}
+
+.project-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: #dde4ff;
+  text-shadow: 0 0 12px rgba(180,200,255,0.7);
+  margin-bottom: 0.5rem;
+}
+
+.project-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #cfd5f8;
+}
+
+.project-btn {
+  background: linear-gradient(90deg, #a6b9ff, #c1aaff);
+  border: none;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+.project-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(180,200,255,0.5);
+}
+
+.close-card {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #bfcaff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.close-card:hover {
+  color: #fff;
+  transform: rotate(90deg);
+}

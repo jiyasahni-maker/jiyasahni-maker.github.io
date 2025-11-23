@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Jiya Sahni</title>
+  <meta name="description" content="Find Jiya Sahni — say hi by email or follow on socials.">
+
+  <link rel="stylesheet" href="/Users/jiyasahni/portfolio/client/src/assets/contact.css">
+  <link rel="stylesheet" href="/Users/jiyasahni/portfolio/client/src/assets/footer.css">
+
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="topbar" role="banner">
+    <div class="brand">JIYA SAHNI</div>
+    <nav class="topnav" role="navigation" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="skills.html">Skills</a>
+      <a href="stellar-journey.html">Stellar Journey</a>
+      <a href="contact.html" class="active" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <!-- BACKGROUND CANVAS -->
+  <canvas id="contactBg" aria-hidden="true"></canvas>
+
+  <main class="contact-main" role="main">
+    <h1 class="page-title">Contact</h1>
+    <p class="subtitle">Find me under moonlight — or send a quiet hello.</p>
+
+    <!-- SOCIALS -->
+    <div class="icons" role="list">
+
+      <a class="icon" href="mailto:sahnijiya06@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24" width="34" height="34" stroke-width="1.6">
+          <path d="M3 7.5L12 14l9-6.5"></path>
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+        </svg>
+        <span>Email</span>
+        <span class="visually-hidden">Email Jiya</span>
+      </a>
+
+      <a class="icon" href="https://www.linkedin.com/in/jiya-sahni2020" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 24 24" width="34" height="34" stroke-width="1.6">
+          <path d="M4 4h4v16H4z"></path>
+          <circle cx="6" cy="7" r="1.5"></circle>
+          <path d="M10 9h4v11h-4z"></path>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+
+      <a class="icon" href="https://github.com/jiyasahni-maker" target="_blank" title="GitHub">
+        <svg viewBox="0 0 24 24" width="34" height="34" stroke-width="1.6">
+          <path d="M12 .5C6.75.5 2.5 4.7 2.5 9.9c0 4 2.6 7.4 6.2 8.6"></path>
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+    </div>
+
+    <p class="footnote">I would love your feedback — feel free to reach out!</p>
+
+
+    <!-- ★★★★★ WEB3FORMS ENABLED FORM ★★★★★ -->
+
+    <form id="cyberForm" class="cyber-form" autocomplete="off" method="POST" action="https://api.web3forms.com/submit">
+
+      <!-- REQUIRED SECRET KEY -->
+      <input type="hidden" name="access_key" value="0396aadc-66d6-4d34-87e2-35e721c72e83">
+
+      <h2 class="form-title">Send Transmission</h2>
+
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter identifier" required>
+        <span class="error"></span>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="email" id="email" placeholder="user@domain.com" required>
+        <span class="error"></span>
+      </div>
+
+      <div class="field">
+        <label>Message</label>
+        <textarea name="message" id="message" placeholder="Your message..." required></textarea>
+        <span class="error"></span>
+      </div>
+
+      <!-- redirect optional -->
+      <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+      <button type="submit" class="cyber-btn">Transmit</button>
+
+      <p id="formSuccess" class="success"></p>
+
+    </form>
+
+  </main>
+
+
+  <!-- GLOBAL FOOTER -->
+  <div class="site-footer-wrap">
+    <footer class="site-footer">
+      © 2025 Jiya Sahni — Built with logic, caffeine & constellations. ☕✦
+    </footer>
+  </div>
+
+  <script src="/Users/jiyasahni/portfolio/client/src/assets/contact.js" defer></script>
+  <script src="/Users/jiyasahni/portfolio/client/src/assets/footer.js" defer></script>
+
+</body>
+</html>

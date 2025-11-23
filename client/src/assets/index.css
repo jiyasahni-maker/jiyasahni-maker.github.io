@@ -1,0 +1,375 @@
+/* === UNIVERSAL RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Lora', serif;
+  background: #000;
+  color: #eaeaff;
+  overflow-x: hidden;
+}
+
+/* === NAVBAR === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,10,25,0.45);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(150,160,220,0.15);
+  z-index: 100;
+}
+.logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #cbb4ff;
+  letter-spacing: 1px;
+}
+nav a {
+  margin-left: 2rem;
+  color: #e0d9ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+nav a:hover,
+nav a.active {
+  color: #b6aaff;
+  text-shadow: 0 0 15px rgba(180,190,255,0.9);
+}
+
+/* === LANDING SECTION === */
+#landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  transition: opacity 1.5s ease;
+}
+#landing.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Background video */
+#celestialLake {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  filter: brightness(1.1) saturate(1.2);
+  transform: translateY(-3%);
+}
+
+/* === MOON === */
+#moon {
+  position: absolute;
+  top: 19%; /* reflection-aligned */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  z-index: 10;
+  cursor: pointer;
+  filter: drop-shadow(0 0 40px rgba(190,210,255,0.9))
+          drop-shadow(0 0 100px rgba(160,180,255,0.5));
+  transition: transform 1s ease, opacity 1.2s ease, filter 1.8s ease;
+}
+
+/* Glowing halo aura */
+#moon::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+              rgba(200,220,255,0.35) 0%,
+              rgba(160,180,255,0.15) 40%,
+              transparent 80%);
+  filter: blur(30px);
+  animation: moonPulse 6s ease-in-out infinite;
+  z-index: -1;
+}
+@keyframes moonPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Hover effect */
+#moon:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  filter: drop-shadow(0 0 120px rgba(230,240,255,1))
+          drop-shadow(0 0 160px rgba(190,210,255,0.9));
+}
+
+/* === CUE LINE === */
+#cueLine {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  width: 2px;
+  height: 60px;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, transparent, #b8caff 60%);
+  opacity: 0.75;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; height: 60px; }
+  50% { opacity: 1; height: 80px; }
+}
+
+/* === CLICK HINT === */
+.click-hint {
+  position: absolute;
+  top: 39%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #cfd8ff;
+  font-size: 1.1rem;
+  font-family: 'Cinzel', serif;
+  opacity: 0.85;
+  text-shadow: 0 0 12px rgba(150,180,255,0.7);
+  animation: hintGlow 3s ease-in-out infinite;
+}
+@keyframes hintGlow {
+  0%, 100% { opacity: 0.8; transform: translate(-50%, 0); }
+  50% { opacity: 1; transform: translate(-50%, -4px); }
+}
+
+/* === HERO SECTION === */
+#hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, rgba(15, 20, 50, 0.3), rgba(2, 3, 12, 0.95));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+  z-index: 4;
+  overflow: hidden;
+}
+#hero.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+/* Profile Image */
+.profile-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 40px rgba(150,180,255,0.4);
+}
+
+/* Text Styling */
+#hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.6rem;
+  color: #e3e8ff;
+  text-shadow: 0 0 30px rgba(160,180,255,0.8);
+  background: linear-gradient(90deg, #bcbaff, #e0e8ff, #bcbaff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+  background-size: 400% 100%;
+}
+#hero p {
+  font-size: 1.1rem;
+  color: #cfd5f8;
+  text-shadow: 0 0 15px rgba(150,180,255,0.3);
+}
+
+/* Button */
+#exploreBtn {
+  background: linear-gradient(90deg, #a6b9ff, #c1aaff);
+  border: none;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.7rem 1.5rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+#exploreBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(180,200,255,0.6);
+}
+
+/* === ABOUT SECTION === */
+#about {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #06071b 0%, #01020b 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+#about.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about-content {
+  max-width: 700px;
+.about-content h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: #cbb4ff;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #bcbaff, #e0e8ff, #bcbaff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+  background-size: 400% 100%;
+}
+}
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccd8ff;
+  text-shadow: 0 0 10px rgba(130,150,255,0.2);
+}
+
+/* === BACKGROUND EFFECTS === */
+#hero::before,
+#about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(180,190,255,0.05), transparent 60%),
+              url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  opacity: 0.4;
+  animation: driftStars 100s linear infinite;
+  z-index: -1;
+  filter: blur(0.5px);
+}
+@keyframes driftStars {
+  0% { background-position: 0 0; }
+  50% { background-position: 800px 400px; }
+  100% { background-position: 0 0; }
+}
+#hero::after,
+#about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+              rgba(120,140,255,0.15) 0%,
+              rgba(40,60,100,0.05) 60%,
+              transparent 100%);
+  z-index: -1;
+  filter: blur(60px);
+}
+
+/* === WORMHOLE EFFECT === */
+.wormhole {
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(50px);
+}
+
+/* === TEXT SHIMMER EFFECT === */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+/* === PARALLAX STARFIELD === */
+#parallaxStars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* Behind content but above background */
+  opacity: 0.5;
+  filter: blur(0.3px);
+}
+
+/* === ABOUT SECTION VISIBILITY FIX === */
+#about {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #06071b 0%, #01020b 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none; /* prevents clicks before visible */
+}
+
+#about.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* === FIX: Make page non-scrollable === */
+html, body {
+  height: 100%;
+  overflow: hidden; /* disables page scroll */
+}
+
+/* All main sections occupy the same full viewport */
+#landing, #hero, #about {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Layer order */
+#landing { z-index: 5; }
+#hero { z-index: 4; }
+#about { z-index: 3; }
+
+/* Smooth fade transitions */
+#landing.hidden, #hero.hidden, #about.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease;
+}

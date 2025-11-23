@@ -1,0 +1,302 @@
+/* contact.css — FINAL FIXED EDITION */
+/* Nebula theme + cyberpunk form + z-index + canvas height fix */
+
+/* ---------- Base variables ---------- */
+:root{
+  --bgdeep:#070710;
+  --accent-1:#cbb4ff;
+  --accent-2:#a6b9ff;
+  --muted:#cfd5f8;
+  --gold:#ffdcae;
+  --glass: rgba(10,12,20,0.4);
+  --glass-2: rgba(8,10,18,0.28);
+
+  --neon-a: #c9b8ff;
+  --neon-b: #9db3ff;
+  --err: #ff7b8c;
+}
+
+/* ---------- Reset ---------- */
+*{ box-sizing:border-box; }
+
+html, body {
+  min-height:100%;
+  margin:0;
+  font-family:"Lora",serif;
+  background:radial-gradient(ellipse at center, var(--bgdeep) 0%, #01020b 100%);
+  color:var(--muted);
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+  overflow-x:hidden;
+}
+
+.visually-hidden{
+  position:absolute;width:1px;height:1px;
+  padding:0;margin:-1px;border:0;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;
+}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;
+  background:rgba(10,10,20,0.45);
+  border-bottom:1px solid rgba(150,160,220,0.1);
+  backdrop-filter:blur(10px);
+  box-shadow:0 6px 30px rgba(8,10,18,0.6);
+  z-index:50;
+}
+.brand{
+  font-weight:700;
+  color:var(--accent-1);
+  letter-spacing:0.06em;
+  font-family:'Cinzel',serif;
+}
+.topnav a{
+  color:var(--muted)!important;
+  text-decoration:none;
+  margin-left:20px;
+  padding:8px;
+  border-radius:8px;
+  transition:color .25s, background .25s;
+}
+.topnav a.active,
+.topnav a:hover{
+  color:var(--accent-1)!important;
+  background:rgba(180,190,255,0.05)!important;
+  text-shadow:0 0 8px rgba(180,190,255,0.3)!important;
+}
+
+/* ---------- Canvas Background ---------- */
+/* FIX: switch to absolute so JS controls height */
+#contactBg{
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:auto;
+  z-index:1;
+  pointer-events:none;
+}
+
+/* ---------- Main content ---------- */
+.contact-main{
+  position:relative;
+  z-index:5;
+  padding-top:130px; /* extra spacing from navbar */
+  text-align:center;
+  max-width:940px;
+  margin:0 auto;
+  padding-left:24px;
+  padding-right:24px;
+}
+.page-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.8rem,3.6vw,2.4rem);
+  color:var(--accent-1);
+  margin-bottom:6px;
+  text-shadow:0 0 40px rgba(180,200,255,0.7);
+}
+.subtitle{
+  margin-bottom:28px;
+  text-shadow:0 0 12px rgba(150,170,255,0.4);
+}
+
+/* ---------- Social Icons ---------- */
+.icons{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  align-items:center;
+  margin:30px auto;
+  padding:12px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:5;
+}
+.icon{
+  width:160px;height:98px;border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,var(--glass),var(--glass-2));
+  border:1px solid rgba(180,190,255,0.06);
+  box-shadow:0 8px 28px rgba(6,8,16,0.6);
+  backdrop-filter:blur(6px);
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+.icon svg{
+  width:38px;height:38px;
+  stroke:var(--accent-2)!important;
+  transition:.3s;
+}
+.icon:hover svg{
+  stroke:var(--gold)!important;
+}
+.icon span{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--muted)!important;
+}
+
+/* ---------- CYBER FORM (Fully corrected) ---------- */
+
+.cyber-form{
+  margin:80px auto 120px;
+  max-width:620px;
+  padding:36px;
+  border-radius:20px;
+  background:rgba(10,12,20,0.55);
+  border:1px solid rgba(160,150,255,0.08);
+  box-shadow:0 12px 36px rgba(6,8,16,0.6), inset 0 0 24px rgba(160,120,255,0.06);
+  backdrop-filter:blur(16px);
+  position:relative;
+  z-index:8;
+  overflow:hidden;
+}
+
+/* FIX: soften glow so it doesn't darken the top */
+.cyber-form::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  pointer-events:none;
+  box-shadow:
+    0 0 18px rgba(157,179,255,0.12),
+    0 0 40px rgba(201,184,255,0.06);
+  animation:neonPulse 4s ease-in-out infinite;
+  mix-blend-mode:screen;
+  opacity:0.9;
+}
+
+@keyframes neonPulse{
+  0%{ filter:blur(4px); opacity:.85; }
+  50%{ filter:blur(10px); opacity:1; }
+  100%{ filter:blur(4px); opacity:.85; }
+}
+
+/* FIX: reduce scan opacity */
+.cyber-form::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-30%;
+  width:40%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);
+  transform:skewX(-20deg);
+  mix-blend-mode:overlay;
+  opacity:0.02;
+  animation:scan 8s linear infinite;
+  pointer-events:none;
+}
+@keyframes scan{
+  0%{ transform:translateX(-120%) skewX(-20deg); }
+  100%{ transform:translateX(250%) skewX(-20deg); }
+}
+
+/* fields */
+.form-title{
+  color:var(--accent-1);
+  font-size:1.4rem;
+  text-shadow:0 0 16px rgba(160,170,255,0.45);
+  margin-bottom:20px;
+}
+.field{
+  margin-bottom:22px;
+  text-align:left;
+}
+.field label{
+  font-size:14px;
+  color:var(--accent-2);
+  margin-bottom:6px;
+}
+
+/* inputs */
+.cyber-form input,
+.cyber-form textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(150,150,200,0.15);
+  background:rgba(10,12,20,0.55);
+  font-size:15px;
+  color:var(--muted);
+  transition:.28s;
+}
+.cyber-form input:focus,
+.cyber-form textarea:focus{
+  border-color:rgba(157,179,255,0.32);
+  box-shadow:0 0 12px rgba(157,179,255,0.25);
+  background:rgba(12,14,20,0.7);
+}
+
+textarea{min-height:120px}
+
+/* errors */
+.error{
+  color:var(--err);
+  font-size:13px;
+  text-shadow:0 0 6px rgba(255,120,130,0.2);
+  min-height:16px;
+}
+
+/* success */
+.success{
+  color:var(--gold);
+  font-size:15px;
+  text-align:center;
+  margin-top:10px;
+}
+
+/* submit */
+.cyber-btn{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--neon-a),var(--neon-b));
+  color:#070610;
+  box-shadow:0 8px 28px rgba(160,170,255,0.25);
+  transition:.3s;
+}
+.cyber-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(157,179,255,0.4);
+}
+
+/* hologram popup */
+.holo-popup{
+  position:absolute;
+  top:-48px;
+  left:50%;
+  transform:translateX(-50%) translateY(-8px);
+  padding:12px 20px;
+  border-radius:10px;
+  background:rgba(200,180,255,0.06);
+  border:1px solid rgba(200,180,255,0.12);
+  text-shadow:0 0 10px rgba(180,160,255,0.6);
+  font-weight:700;
+  color:var(--neon-a);
+  opacity:0;
+  pointer-events:none;
+  backdrop-filter:blur(6px);
+  z-index:20;
+}
+.holo-popup.show{
+  opacity:1;
+  animation:holoIn .8s ease-out;
+}
+@keyframes holoIn{
+  0%{ transform:translateX(-50%) translateY(-18px); opacity:0; }
+  100%{ transform:translateX(-50%) translateY(-8px); opacity:1; }
+}
+
+/* Responsive */
+@media(max-width:720px){
+  .cyber-form{ margin:40px 16px 80px; padding:26px; }
+}

@@ -1,0 +1,77 @@
+/* Cosmic Glass Footer — shared across all pages */
+.site-footer-wrap {
+  position: relative;
+  z-index: 999; /* sits above page content but below UI modals */
+  pointer-events: none;
+}
+
+/* actual footer element */
+.site-footer {
+  pointer-events: auto;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: .9rem 1.1rem;
+  width: clamp(320px, 62%, 820px);
+  color: #f2f6ff;
+  font-family: "Lora", serif;
+  font-size: 0.95rem;
+  border-radius: 14px;
+  text-align: center;
+
+  /* glassmorphism */
+  background: linear-gradient(180deg, rgba(18,20,28,0.64), rgba(12,14,22,0.42));
+  border: 1px solid rgba(200,210,255,0.08);
+  box-shadow: 0 6px 28px rgba(8,10,18,0.55), 0 0 40px rgba(160,150,255,0.04) inset;
+  backdrop-filter: blur(10px) saturate(120%);
+  transition: transform .28s ease, opacity .28s ease, box-shadow .28s ease;
+  opacity: 0.98;
+}
+
+/* decorative subtle rim glow */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 30% 10%, rgba(203,180,255,0.04), transparent 12%),
+              radial-gradient(ellipse at 80% 90%, rgba(166,185,255,0.02), transparent 14%);
+  mix-blend-mode: screen;
+}
+
+/* fixed vs anchored modes */
+.site-footer.fixed {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  bottom: 3.8vh;
+}
+
+/* anchored (page-bottom) */
+.site-footer.anchored {
+  position: relative;
+  transform: translateX(0);
+  margin-top: 2.2rem;
+  margin-bottom: 2.2rem;
+}
+
+/* small shimmering pulse (very subtle) */
+@keyframes footerPulse {
+  0% { box-shadow: 0 6px 28px rgba(8,10,18,0.55), 0 0 32px rgba(180,160,255,0.02) inset; }
+  50% { box-shadow: 0 10px 36px rgba(8,10,18,0.6), 0 0 56px rgba(200,180,255,0.03) inset; }
+  100% { box-shadow: 0 6px 28px rgba(8,10,18,0.55), 0 0 32px rgba(180,160,255,0.02) inset; }
+}
+.site-footer.pulse { animation: footerPulse 12s ease-in-out infinite; }
+
+/* responsive adjustments */
+@media (max-width: 900px) {
+  .site-footer { width: 92%; font-size: .92rem; padding: .8rem .9rem; border-radius: 12px; }
+  .site-footer.fixed { bottom: 4.8vh; }
+}
+@media (max-width: 520px) {
+  .site-footer { font-size: .84rem; padding: .7rem .8rem; width: 94%; }
+  .site-footer.fixed { bottom: 3.4vh; }
+}
