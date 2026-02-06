@@ -2,79 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Jiya Sahni | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jiya Sahni | Celestial Universe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/Users/jiyasahni/portfolio/client/src/assets/index.css" />
-  <link rel="stylesheet" href="/Users/jiyasahni/portfolio/client/src/assets/footer.css">
 
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css" />
 </head>
+
 <body>
-  <!-- 🌙 Navbar -->
-  <header class="navbar">
-    <div class="logo">JIYA</div>
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="skills.html">Skills</a>
-      <a href="stellar-journey.html">Stellar Journey</a>
-      <a href="contact.html">Contact</a>
-     
-    </nav>
-  </header>
-<canvas id="parallaxStars"></canvas>
 
-  <!-- 🌌 Landing Scene -->
-  <section id="landing">
-    <video id="celestialLake" autoplay 
-  loop 
-  muted 
-  playsinline 
-  preload="auto">
-      <source src="/Users/jiyasahni/portfolio/client/src/assets/images/celestial-lake.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+<header class="navbar">
+  <div class="logo">JIYA</div>
+  <nav>
+    <a>Home</a>
+    <a>Skills</a>
+    <a>Projects</a>
+    <a>Contact</a>
+  </nav>
+</header>
 
-    <img id="moon" src="/Users/jiyasahni/portfolio/client/src/assets/images/celestial-moon.png" alt="Celestial Moon" />
-    <div id="cueLine"></div>
-    <p class="click-hint">Click the Moon to Begin ✦</p>
-  </section>
+<!-- VIDEO BACKGROUND -->
+<video id="bgVideo" autoplay muted loop playsinline>
+  <source src="assets/celestial-lake.mp4" type="video/mp4">
+</video>
 
-  <!-- 🌠 Hero Section -->
-  <section id="hero">
-    <div class="hero-content">
-      <img src="/Users/jiyasahni/portfolio/client/src/assets/images/IMG_3756.jpg" alt="Profile" class="profile-img">
-      <div class="hero-text-group">
-      <h1>Welcome to My Universe ✦</h1>
-      <p>Where code meets cosmos — explore my stellar creations.</p>
-      <button id="exploreBtn">Explore My Story</button>
-      </div>
+<!-- STAR CANVAS -->
+<canvas id="starfield"></canvas>
+
+<!-- LANDING -->
+<section id="landing" class="active">
+  <div id="moon-wrapper">
+    <img src="assets/celestial-moon.png" id="moon" alt="Moon">
+  </div>
+  <p id="cue">Click the moon to begin ✦</p>
+</section>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-box">
+    <img src="assets/IMG_3756.jpg" class="portrait" alt="Portrait">
+    <div class="hero-text">
+      <h1>Jiya Sahni</h1>
+      <h3>Web Creator & Dreamweaver</h3>
+      <p>In the stillness of the night, I build worlds of light.</p>
+      <button id="explore">Explore</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 🌙 About Section -->
-  <section id="about">
-    <div class="about-content">
-      <h2>About Me</h2>
-      <p>
-        I’m Jiya Sahni — a Computer Science student fascinated by the intersection of 
-        cybersecurity and AI. I see technology not just as code, but as constellations 
-        of creativity, logic, and emotion. My work is a cosmic blend of functionality and poetry.
-      </p>
-    </div>
-  </section>
-<div class="alignment-anchor"></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-box">
+    <h2>About Me</h2>
+    <p>Under moonlight, I design calm, intentional experiences.</p>
+    <button id="restart">Restart</button>
+  </div>
+</section>
 
-  <script src="/Users/jiyasahni/portfolio/client/src/assets/index.js"></script>
-  <!-- unified cosmic footer -->
-<div class="site-footer-wrap" aria-hidden="false">
-  <footer class="site-footer" role="contentinfo" aria-label="Site copyright">
-    © 2025 Jiya Sahni — Built with logic, caffeine & constellations. ☕✦
-  </footer>
-</div>
-<div id="sunrise-overlay"></div>
-<div id="nightfall-overlay"></div>
-<script src="/Users/jiyasahni/portfolio/client/src/assets/footer.js" defer></script>
-
-
+<script src="stars.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
