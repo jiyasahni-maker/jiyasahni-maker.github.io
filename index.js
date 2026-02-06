@@ -9,6 +9,8 @@ const restart = document.getElementById("restart");
 const video = document.getElementById("bgVideo");
 const starfield = document.getElementById("starfield");
 
+let morphing = false;
+
 function setScene(scene) {
   landing.classList.remove("active");
   hero.classList.remove("active");
@@ -18,12 +20,11 @@ function setScene(scene) {
     landing.classList.add("active");
     video.classList.remove("hidden");
     starfield.classList.remove("active");
+    resetStars();
   }
 
   if (scene === "hero") {
     hero.classList.add("active");
-    video.classList.add("hidden");
-    starfield.classList.add("active");
   }
 
   if (scene === "about") {
@@ -31,6 +32,32 @@ function setScene(scene) {
   }
 }
 
-moon.addEventListener("click", () => setScene("hero"));
+moon.addEventListener("click", () => {
+  if (morphing) return;
+  morphing = true;
+
+  startMorph({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  });
+
+  video.classList.add("hidden");
+  starfield.classList.add("active");
+
+  setTimeout(() => {
+    landing.classList.remove("active");
+    hero.classList.add("active");
+  }, 1800);
+});
+
 explore.addEventListener("click", () => setScene("about"));
-restart.addEventListener("click", () => setScene("landing"));
+restart.addEventListener("click", () => {
+  morphing = false;
+  setScene("landing");
+});
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.querySelector(".nav-links");
+
+navToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
