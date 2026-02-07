@@ -86,6 +86,7 @@ body {
 
 /* MOBILE NAV */
 @media (max-width: 768px) {
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -107,6 +108,7 @@ body {
     display: block;
   }
 }
+
 
 
 /* VIDEO */

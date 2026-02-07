@@ -55,9 +55,9 @@ restart.addEventListener("click", () => {
   morphing = false;
   setScene("landing");
 });
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.querySelector(".nav-links");
+// const navToggle = document.getElementById("navToggle");
+// const navLinks = document.querySelector(".nav-links");
 
-navToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-});
+// navToggle.addEventListener("click", () => {
+//   navLinks.classList.toggle("open");
+// });
